@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from starlette.responses import JSONResponse
 from joblib import load
 import pandas as pd
+from datetime import datetime
 
 
 # Instating the fast API class
@@ -49,10 +50,15 @@ def format_features(
     store:str,
     date:str
     ):
+
+    date_obj = datetime.strptime(date, '%Y-%m-%d')
+
+    # Extract the week number from the datetime object
+    week_number = date_obj.strftime('%U')
     return {
         'item': [item],
         'store': [store],
-        'date': [date],
+        'week': [week_number],
         
     }
 
@@ -76,4 +82,3 @@ def predict(
 
 
 
-    
