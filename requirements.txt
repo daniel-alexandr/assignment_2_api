@@ -7,3 +7,7 @@ fastapi==0.88.0
 uvicorn==0.20.0
 
 joblib==1.2.0
+
+statsmodels==0.14.0
+
+matplotlib==3.8.0

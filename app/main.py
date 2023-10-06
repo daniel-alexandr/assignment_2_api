@@ -35,13 +35,13 @@ def read_root():
     2. '/sales/stores/item/' : API endpoint to use the predictive model. This endpoint will output the revenue prediction for an item in a store on a date
     
         Expected inputs are: 
-        item_id: Only enter one from this list []
-        store_id: Only enter one from this list [CA_1]
+        item_id: Only enter one from the item_id (must be registered item in the training dataset)
+        store_id: Only enter one from store_id (must be registered store in the training dataset)
         Date: Has to be in a following format 'yyyy-mm-dd' and a valid factual date. 
 
     3. '/sales/national/': API endpoint to use the forecasting model. This endpoint will output the forecast for the next 7 days from a inputted starting date.
 
-        Date: Has to be in a following format 'yyyy-mm-dd' and a valid factual date. 
+        Date: Has to be in a following format 'yyyy-mm-dd' and a valid factual date and strictly need to be a date > 2011-01-28 as the algorithm only accounts for 7 days forecast and the model was made based on earliest date = 2011-01-28 
 
 
     Link to GitHub:
@@ -95,7 +95,7 @@ def format_features(
     week_number = "{:02d}".format(week_number)
 
     # Splitting the item_id to get cat_id
-    cat_id=item_id.split('_')[0]
+    cat_id=item.split('_')[0]
 
 
     return {
